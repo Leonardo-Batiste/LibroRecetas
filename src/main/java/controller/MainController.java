@@ -2,6 +2,7 @@
 package controller;
 
 import java.awt.event.*;
+import javax.swing.JOptionPane;
 import model.dao.*;
 import model.entity.MyException;
 import view.*;
@@ -19,15 +20,17 @@ public class MainController {
     private void start(){
         try {
             crearObjetos();
+            
             initDAO.crearDB();
             initDAO.crearTablas();
+            
             crearListenersMenu();
             crearListenersIntroducirRecetaDialog();
 
             menu.setVisible(true);
             
         } catch (MyException excepcion) {
-            
+            JOptionPane.showMessageDialog(null, excepcion.getMessage());
         }
         
     }

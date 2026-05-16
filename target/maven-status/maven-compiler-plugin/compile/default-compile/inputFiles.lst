@@ -1,4 +1,10 @@
 C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\app\Main.java
 C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\controller\MainController.java
+C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\model\dao\InitDAO.java
+C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\model\entity\Ingrediente.java
+C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\model\entity\MyException.java
+C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\model\entity\Paso.java
+C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\model\entity\Receta.java
+C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\model\entity\Receta_ingrediente.java
 C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\view\IntroducirRecetaDialog.java
 C:\Users\leona\Documents\NetBeansProjects\LibroRecetas\src\main\java\view\Menu.java

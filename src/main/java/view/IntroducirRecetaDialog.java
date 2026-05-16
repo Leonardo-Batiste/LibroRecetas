@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package view;
 
-import javax.swing.JButton;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.table.*;
 
-/**
- *
- * @author leona
- */
+
 public class IntroducirRecetaDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(IntroducirRecetaDialog.class.getName());
@@ -20,6 +16,50 @@ public class IntroducirRecetaDialog extends javax.swing.JDialog {
     public IntroducirRecetaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        generarTablas();
+    }
+    
+    DefaultTableModel modeloTablaIngredientes = new DefaultTableModel(
+            new String[]{"nombre ingrediente", "cantidad para la receta"},0
+    );
+    
+    JTable tablaIngredientes = new JTable(modeloTablaIngredientes);
+    
+    DefaultTableModel modeloTablaPasos = new DefaultTableModel(
+            new String[]{"Orden", "Descripcion"},0
+    );
+    
+    JTable tablaPasos = new JTable(modeloTablaPasos);
+    
+    private void generarTablas(){
+        JTabbedPane pestañas = new JTabbedPane();
+        
+        pestañas.addTab("Ingredientes", new JScrollPane(tablaIngredientes));
+        modeloTablaIngredientes.addRow(new Object[]{"", ""});
+        tablaIngredientes.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("ENTER"), "nuevaFila");
+        tablaIngredientes.getActionMap().put("nuevaFila", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                modeloTablaIngredientes.addRow(new Object[]{"", ""});
+            }
+        } );
+        
+        pestañas.addTab("Pasos", new JScrollPane(tablaPasos));
+        modeloTablaPasos.addRow(new Object[]{"",""});
+        tablaPasos.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("ENTER"), "nuevaFila");
+        tablaPasos.getActionMap().put("nuevaFila", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloTablaPasos.addRow(new Object[]{"", ""});
+            }
+        });
+        
+        panelTablas.add(pestañas, java.awt.BorderLayout.CENTER);
+        panelTablas.revalidate();
+    }
+    
+    public JButton getBtnSalir() {
+        return btnSalir;
     }
 
     /**
@@ -31,40 +71,84 @@ public class IntroducirRecetaDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         MainPanel = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         nombreRecetaL = new javax.swing.JLabel();
         nombreReceta = new javax.swing.JTextField();
+        Categoria = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        panelTablas = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        MainPanel.setMinimumSize(new java.awt.Dimension(350, 250));
 
         btnSalir.setText("Salir");
 
         nombreRecetaL.setText("Nombre receta");
+
+        Categoria.setText("Categoria");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1º", "2º", "3º" }));
+
+        panelTablas.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(nombreRecetaL)
-                .addGap(3, 3, 3)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(nombreRecetaL)
+                                .addGap(4, 4, 4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Categoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(nombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                                .addComponent(btnSalir))))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(panelTablas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(16, 16, 16)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreRecetaL)
-                    .addComponent(nombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addContainerGap())
+                    .addComponent(nombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Categoria))
+                .addGap(18, 18, 18)
+                .addComponent(panelTablas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,17 +201,17 @@ public class IntroducirRecetaDialog extends javax.swing.JDialog {
             }
         });
     }
-
-    public JButton getBtnSalir() {
-        return btnSalir;
-    }
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Categoria;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombreReceta;
     private javax.swing.JLabel nombreRecetaL;
+    private javax.swing.JPanel panelTablas;
     // End of variables declaration//GEN-END:variables
 }
