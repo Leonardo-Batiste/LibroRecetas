@@ -14,4 +14,22 @@ public class Paso {
         this.orden = ordenIntroducida;
         this.descripcion = descripcionIntroducida;
     }
+
+    public int getIdPaso() {
+        return idPaso;
+    }
+
+    public int getIdReceta() {
+        return idReceta;
+    }
+
+    public int getOrden() {
+        return orden;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+    
+    
 }

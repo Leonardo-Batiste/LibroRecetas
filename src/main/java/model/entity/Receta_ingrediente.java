@@ -12,4 +12,18 @@ public class Receta_ingrediente {
         this.idIngrediente = idIngredienteIntroducido;
         this.cantidad = cantidadIntroducida;
     }
+
+    public int getIdReceta() {
+        return idReceta;
+    }
+
+    public int getIdIngrediente() {
+        return idIngrediente;
+    }
+
+    public float getCantidad() {
+        return cantidad;
+    }
+    
+    
 }
